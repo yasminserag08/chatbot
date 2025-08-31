@@ -19,12 +19,14 @@ function ChatMessage({ message, sender }) {
   );
 } 
 
-const app = (
-  <>
-    <ChatInput />
-    <ChatMessage message='Hello chatbot' sender='user' />
-    <ChatMessage message='Hello user' sender='bot' />
-  </>
-)
+function App() {
+  return (
+    <>
+      <ChatInput />
+      <ChatMessage message='Hello chatbot' sender='user' />
+      <ChatMessage message='Hello user' sender='bot' />
+    </>
+  );
+}
 
-ReactDOM.createRoot(container).render(app);
+ReactDOM.createRoot(container).render(<App />);

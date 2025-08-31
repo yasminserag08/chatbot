@@ -10,25 +10,6 @@
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
-    <script type="text/babel">
-      const container = document.querySelector('.js-container'); 
-
-      function ChatInput() {
-        return (
-          <>
-            <input placeholder="Type your message here..." />
-            <button>Send</button>
-          </>
-        );
-      }
-
-      const app = (
-        <>
-          <ChatInput />
-        </>
-      )
-
-      ReactDOM.createRoot(container).render(app);
-    </script>
+    <script type="text/babel" src="chatbot.jsx"></script>
   </body>
 </html>

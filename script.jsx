@@ -9,9 +9,21 @@ function ChatInput() {
   );
 }
 
+function ChatMessage({ message, sender }) {
+  return (
+    <div>
+      {sender === 'bot' && <img src="bot.png" width="50px" />}
+      {message}
+      {sender === 'user' && <img src="user.png" width="50px" />}
+    </div>
+  );
+} 
+
 const app = (
   <>
     <ChatInput />
+    <ChatMessage message='Hello chatbot' sender='user' />
+    <ChatMessage message='Hello user' sender='bot' />
   </>
 )
 

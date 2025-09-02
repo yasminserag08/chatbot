@@ -1,15 +1,39 @@
 const container = document.querySelector('.js-container'); 
+const root = ReactDOM.createRoot(container);
 
-function ChatInput() {
+function ChatInput({chatMessages, setChatMessages}) {
   return (
     <>
       <input placeholder="Type your message here..." />
-      <button>Send</button>
+      <button onClick={sendMessage}>Send</button>
     </>
   );
+  function sendMessage() {
+  setChatMessages([
+    ...chatMessages,
+    {
+      message: 'new',
+      sender: 'user',
+      id: crypto.randomUUID()
+    }
+  ]);
+}
 }
 
 function ChatMessage({ message, sender }) {
+  const array = React.useState([{
+    message: 'Hello chatbot',
+    sender: 'user', 
+    id: 'id1'
+    }, {
+    message: 'Hello user',
+    sender: 'bot',
+    id: 'id2'
+    }]
+  );
+  const chatMessages = array[0];
+  const setChatMessages = array[1];
+
   return (
     <div>
       {sender === 'bot' && <img src="bot.png" width="50px" />}
@@ -19,33 +43,39 @@ function ChatMessage({ message, sender }) {
   );
 } 
 
-function ChatMessages() 
+
+function ChatMessages({ chatMessages }) 
 {
-  const chatMessages = [{
-    message: 'Hello chatbot',
-    sender: 'user', 
-    id: 'id1'
-  }, {
-    message: 'Hello user',
-    sender: 'bot',
-    id: 'id2'
-  }];
   return (
     <>
       {chatMessages.map((chatMessage) => {
-        return <ChatMessage message={chatMessage.message} sender={chatMessage.sender} key={chatMessage.id} />;
+        return <ChatMessage 
+          message={chatMessage.message} 
+          sender={chatMessage.sender} 
+          key={chatMessage.id} />;
       })}
     </>
   );
 }
 
 function App() {
+  const [chatMessages, setChatMessages] = React.useState([
+    {
+      message: 'Hello chatbot',
+      sender: 'user',
+      id: 'id1'
+    }, {
+    message: 'Hello user',
+    sender: 'bot',
+    id: 'id2'
+    }
+  ]);
   return (
     <>
-      <ChatInput />
-      <ChatMessages />
+      <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages} />
+      <ChatMessages chatMessages={chatMessages} />
     </>
   ); 
 }
 
-ReactDOM.createRoot(container).render(<App />);
+root.render(<App />);

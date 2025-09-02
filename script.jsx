@@ -20,13 +20,27 @@ function ChatMessage({ message, sender }) {
 } 
 
 function App() {
+  const chatMessages = [{
+    message: 'Hello chatbot',
+    sender: 'user'
+  }, {
+    message: 'Hello user',
+    sender: 'bot'
+  }];
+
+  
+
+
   return (
     <>
       <ChatInput />
-      <ChatMessage message='Hello chatbot' sender='user' />
-      <ChatMessage message='Hello user' sender='bot' />
+      { 
+        chatMessages.map((chatMessage) => {
+          return <ChatMessage message={chatMessage.message} sender={chatMessage.sender} />;
+        })
+      }
     </>
-  );
+  ); 
 }
 
 ReactDOM.createRoot(container).render(<App />);

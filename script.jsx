@@ -22,21 +22,20 @@ function ChatMessage({ message, sender }) {
 function App() {
   const chatMessages = [{
     message: 'Hello chatbot',
-    sender: 'user'
+    sender: 'user', 
+    id: 'id1'
   }, {
     message: 'Hello user',
-    sender: 'bot'
+    sender: 'bot',
+    id: 'id2'
   }];
-
-  
-
 
   return (
     <>
       <ChatInput />
       { 
         chatMessages.map((chatMessage) => {
-          return <ChatMessage message={chatMessage.message} sender={chatMessage.sender} />;
+          return <ChatMessage message={chatMessage.message} sender={chatMessage.sender} id={chatMessage.id} />;
         })
       }
     </>

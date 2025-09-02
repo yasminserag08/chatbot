@@ -19,7 +19,8 @@ function ChatMessage({ message, sender }) {
   );
 } 
 
-function App() {
+function ChatMessages() 
+{
   const chatMessages = [{
     message: 'Hello chatbot',
     sender: 'user', 
@@ -29,15 +30,20 @@ function App() {
     sender: 'bot',
     id: 'id2'
   }];
+  return (
+    <>
+      {chatMessages.map((chatMessage) => {
+        return <ChatMessage message={chatMessage.message} sender={chatMessage.sender} key={chatMessage.id} />;
+      })}
+    </>
+  );
+}
 
+function App() {
   return (
     <>
       <ChatInput />
-      { 
-        chatMessages.map((chatMessage) => {
-          return <ChatMessage message={chatMessage.message} sender={chatMessage.sender} id={chatMessage.id} />;
-        })
-      }
+      <ChatMessages />
     </>
   ); 
 }

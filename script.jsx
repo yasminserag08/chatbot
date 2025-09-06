@@ -61,7 +61,7 @@ function ChatInput({chatMessages, setChatMessages}) {
         disabled={isLoading}
       />
       <button 
-        disabled={isLoading}
+        disabled={isLoading || (inputText === '')}
         onClick={() => sendMessage({ inputText, setInputText })}>
           Send
       </button>

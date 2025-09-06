@@ -2,7 +2,8 @@ const container = document.querySelector('.js-container');
 const root = ReactDOM.createRoot(container);
 
 function ChatInput({chatMessages, setChatMessages}) {
-  const [inputText, setInputText] = React.useState('')
+  const [inputText, setInputText] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
   function saveInputText(event) {
     setInputText(event.target.value);
   }
@@ -37,7 +38,9 @@ function ChatInput({chatMessages, setChatMessages}) {
         id: crypto.randomUUID()
       }
     ]);
+    setIsLoading(true);
     const response = await Chatbot.getResponseAsync(newInputText);
+    setIsLoading(false);
     setChatMessages([
       ...newChatMessages, 
       {
@@ -55,8 +58,13 @@ function ChatInput({chatMessages, setChatMessages}) {
         onChange={saveInputText} 
         value={inputText}
         onKeyDown={checkKey}  
+        disabled={isLoading}
       />
-      <button onClick={() => sendMessage({ inputText, setInputText })}>Send</button>
+      <button 
+        disabled={isLoading}
+        onClick={() => sendMessage({ inputText, setInputText })}>
+          Send
+      </button>
     </>
   );
 }

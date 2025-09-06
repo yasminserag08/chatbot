@@ -2,37 +2,31 @@ const container = document.querySelector('.js-container');
 const root = ReactDOM.createRoot(container);
 
 function ChatInput({chatMessages, setChatMessages}) {
+  const [inputText, setInputText] = React.useState('')
+  function saveInputText(event) {
+    setInputText(event.target.value);
+  }
+
+  function sendMessage(inputText) {
+    setChatMessages([
+      ...chatMessages,
+      {
+        message: inputText,
+        sender: 'user',
+        id: crypto.randomUUID()
+      }
+    ]);
+  }
+
   return (
     <>
-      <input placeholder="Type your message here..." />
-      <button onClick={sendMessage}>Send</button>
+      <input placeholder="Type your message here..." onChange={saveInputText}/>
+      <button onClick={() => sendMessage(inputText)}>Send</button>
     </>
   );
-  function sendMessage() {
-  setChatMessages([
-    ...chatMessages,
-    {
-      message: 'new',
-      sender: 'user',
-      id: crypto.randomUUID()
-    }
-  ]);
-}
 }
 
 function ChatMessage({ message, sender }) {
-  const array = React.useState([{
-    message: 'Hello chatbot',
-    sender: 'user', 
-    id: 'id1'
-    }, {
-    message: 'Hello user',
-    sender: 'bot',
-    id: 'id2'
-    }]
-  );
-  const chatMessages = array[0];
-  const setChatMessages = array[1];
 
   return (
     <div>

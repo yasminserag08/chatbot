@@ -7,21 +7,32 @@ function ChatInput({chatMessages, setChatMessages}) {
     setInputText(event.target.value);
   }
 
-  function sendMessage(inputText) {
-    setChatMessages([
+  function sendMessage({ inputText, setInputText }) {
+    const newChatMessages = [      
       ...chatMessages,
       {
         message: inputText,
         sender: 'user',
         id: crypto.randomUUID()
       }
+    ];
+    setChatMessages(newChatMessages);
+    const response = Chatbot.getResponse(inputText);
+    setChatMessages([
+      ...newChatMessages, 
+      {
+        message: response,
+        sender: 'bot',
+        id: crypto.randomUUID()
+      }
     ]);
+    setInputText('');
   }
 
   return (
     <>
-      <input placeholder="Type your message here..." onChange={saveInputText}/>
-      <button onClick={() => sendMessage(inputText)}>Send</button>
+      <input placeholder="Type your message here..." onChange={saveInputText} value={inputText} />
+      <button onClick={() => sendMessage({ inputText, setInputText })}>Send</button>
     </>
   );
 }

@@ -29,6 +29,14 @@ function ChatInput({chatMessages, setChatMessages}) {
     setChatMessages(newChatMessages);
     const newInputText = inputText;
     setInputText('');
+    setChatMessages([
+      ...newChatMessages,
+      {
+        message: 'Loading...',
+        sender: 'bot',
+        id: crypto.randomUUID()
+      }
+    ]);
     const response = await Chatbot.getResponseAsync(newInputText);
     setChatMessages([
       ...newChatMessages, 

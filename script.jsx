@@ -7,6 +7,16 @@ function ChatInput({chatMessages, setChatMessages}) {
     setInputText(event.target.value);
   }
 
+  function checkKey(event) {
+    const key = event.key;
+    if(key === 'Enter') {
+      sendMessage({ inputText, setInputText });
+    }
+    else if(key === 'Escape') {
+      setInputText('');
+    }
+  }
+
   function sendMessage({ inputText, setInputText }) {
     const newChatMessages = [      
       ...chatMessages,
@@ -31,7 +41,12 @@ function ChatInput({chatMessages, setChatMessages}) {
 
   return (
     <>
-      <input placeholder="Type your message here..." onChange={saveInputText} value={inputText} />
+      <input 
+        placeholder="Type your message here..." 
+        onChange={saveInputText} 
+        value={inputText}
+        onKeyDown={checkKey}  
+      />
       <button onClick={() => sendMessage({ inputText, setInputText })}>Send</button>
     </>
   );

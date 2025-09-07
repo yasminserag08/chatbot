@@ -52,7 +52,7 @@ function ChatInput({chatMessages, setChatMessages}) {
   }
 
   return (
-    <div className="chat-input">
+    <div className="chat-input-container">
       <input 
         placeholder="Type your message here..." 
         onChange={saveInputText} 
@@ -71,12 +71,13 @@ function ChatInput({chatMessages, setChatMessages}) {
 }
 
 function ChatMessage({ message, sender }) {
-
   return (
-    <div>
-      {sender === 'bot' && <img src="bot.png" width="50px" />}
-      {message}
-      {sender === 'user' && <img src="user.png" width="50px" />}
+    <div className={sender === 'bot' ? 'bot-message' : 'user-message'}>
+      {sender === 'bot' && <img src="bot.png" />}
+      <div className="chat-message-text">
+        {message}
+      </div>
+      {sender === 'user' && <img src="user.png" />}
     </div>
   );
 } 
@@ -99,10 +100,10 @@ function ChatMessages({ chatMessages })
 function App() {
   const [chatMessages, setChatMessages] = React.useState([]);
   return (
-    <>
-      <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages} />
+    <div className="app-container">
       <ChatMessages chatMessages={chatMessages} />
-    </>
+      <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages} />
+    </div>
   ); 
 }
 

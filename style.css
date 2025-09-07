@@ -82,4 +82,6 @@ img {
 .chat-messages-container {
   flex: 1;
   margin-top: 20px;
+  overflow: scroll;
+  scrollbar-width: none;
 }

@@ -62,7 +62,8 @@ function ChatInput({chatMessages, setChatMessages}) {
       />
       <button 
         disabled={isLoading || (inputText === '')}
-        onClick={() => sendMessage({ inputText, setInputText })}>
+        onClick={() => sendMessage({ inputText, setInputText })}
+        className="send-button">
           Send
       </button>
     </>
@@ -96,17 +97,7 @@ function ChatMessages({ chatMessages })
 }
 
 function App() {
-  const [chatMessages, setChatMessages] = React.useState([
-    {
-      message: 'Hello chatbot',
-      sender: 'user',
-      id: 'id1'
-    }, {
-    message: 'Hello user',
-    sender: 'bot',
-    id: 'id2'
-    }
-  ]);
+  const [chatMessages, setChatMessages] = React.useState([]);
   return (
     <>
       <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages} />

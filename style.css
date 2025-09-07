@@ -1,0 +1,27 @@
+body { font-family: 'Montserrat'; }
+input { 
+  font-family: 'Montserrat'; 
+  padding: 12px 15px;
+  border-radius: 10px;
+  border-width: 1px;
+  font-size: 15px;
+}
+button { font-family: 'Montserrat'; }
+.send-button {
+  cursor: pointer;
+  background-color: rgb(0, 114, 213);
+  color: white;
+  border-radius: 0.4rem;
+  border: none;
+  padding: 12px 20px;
+  margin-left: 10px;
+  font-size: 15px;
+  transition: opacity 0.3s;
+}
+.send-button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+.send-button:hover:enabled {
+  opacity: 0.8;
+}

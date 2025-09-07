@@ -52,7 +52,7 @@ function ChatInput({chatMessages, setChatMessages}) {
   }
 
   return (
-    <>
+    <div className="chat-input">
       <input 
         placeholder="Type your message here..." 
         onChange={saveInputText} 
@@ -66,7 +66,7 @@ function ChatInput({chatMessages, setChatMessages}) {
         className="send-button">
           Send
       </button>
-    </>
+    </div>
   );
 }
 

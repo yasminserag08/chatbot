@@ -38,6 +38,7 @@ button { font-family: 'Arial'; }
 
 .chat-input-container {
   display: flex;
+  margin-bottom: 60px;
 }
 
 .app-container {
@@ -45,6 +46,8 @@ button { font-family: 'Arial'; }
   margin-left: auto;
   max-width: 600px;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .bot-message {
@@ -76,3 +79,7 @@ img {
   width: 45px;
 }
 
+.chat-messages-container {
+  flex: 1;
+  margin-top: 20px;
+}

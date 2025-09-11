@@ -1,9 +1,9 @@
-const container = document.querySelector('.js-container'); 
-const root = ReactDOM.createRoot(container);
+import { useState } from 'react'
+import { Chatbot } from 'supersimpledev'
 
 function ChatInput({chatMessages, setChatMessages}) {
-  const [inputText, setInputText] = React.useState('');
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [inputText, setInputText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   function saveInputText(event) {
     setInputText(event.target.value);
   }
@@ -70,47 +70,4 @@ function ChatInput({chatMessages, setChatMessages}) {
   );
 }
 
-function ChatMessage({ message, sender }) {
-  return (
-    <div className={sender === 'bot' ? 'bot-message' : 'user-message'}>
-      {sender === 'bot' && <img src="bot.png" />}
-      <div className="chat-message-text">
-        {message}
-      </div>
-      {sender === 'user' && <img src="user.png" />}
-    </div>
-  );
-} 
-
-function ChatMessages({ chatMessages }) 
-{
-  const chatMessagesRef = React.useRef(null);
-  React.useEffect(() => {
-    const containerElem = chatMessagesRef.current;
-    if(containerElem) {
-      containerElem.scrollTop = containerElem.scrollHeight;
-    }
-  }, [chatMessages]);
-  return (
-    <div className="chat-messages-container" ref={chatMessagesRef}>
-      {chatMessages.map((chatMessage) => {
-        return <ChatMessage 
-          message={chatMessage.message} 
-          sender={chatMessage.sender} 
-          key={chatMessage.id} />;
-      })}
-    </div>
-  );
-}
-
-function App() {
-  const [chatMessages, setChatMessages] = React.useState([]);
-  return (
-    <div className="app-container">
-      <ChatMessages chatMessages={chatMessages} />
-      <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages} />
-    </div>
-  ); 
-}
-
-root.render(<App />);
+export default ChatInput
